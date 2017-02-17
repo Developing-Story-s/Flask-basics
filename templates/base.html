@@ -1,0 +1,36 @@
+<!doctype html>
+
+<html style="text-align: center">
+
+    <head>
+        {% block head %}
+        <title>
+            {% block title %}{% endblock %} - The Acme Co.</title>
+        {% endblock %}
+    </head>
+
+    <body>
+    <img src="{{ url_for('static', filename='favicon.jpg') }}" alt="">
+        <h1>The Acme Co.</h1>
+        {% with messages = get_flashed_messages() %}
+
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
+
+        <div id="content" >
+            {% block content %}{% endblock %}
+        </div>
+
+        <footer>
+            {% block footer %}
+                &copy; Copyright 2017 - The Acme Co.
+            {% endblock %}
+        </footer>
+    </body>
+</html>
